@@ -1,0 +1,125 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+
+// This is an experimental bubble class! Its kinda primative though
+
+
+public class Bubble {
+	
+	int bubbleSize;
+	String bubbleName;
+	
+	Quality bubbleQuality = new Quality();
+	
+	final Random rand = new Random();
+	
+	public Bubble() {
+		
+		// Create a unique bubble name! (It might be messy though)
+		
+		
+		final StringBuilder bob = new StringBuilder();
+		
+		final char[] letterList = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
+				'r','s','t','u','v', 'w', 'x', 'y', 'z', '1' , '2' ,'3', '4', '5', '6', '7', '8'
+				,'9', '0'};
+		
+		for(int i = 0; i < 3; i++) {
+			int randNum = rand.nextInt(letterList.length);
+			
+			bob.append(letterList[randNum]);
+			
+		}
+		
+		bob.append(" @ ");
+		
+		for(int i = 0; i < 30; i++) {
+			int randNum = rand.nextInt(letterList.length);
+			
+			bob.append(letterList[randNum]);
+			
+		}
+		
+		
+		bubbleName = bob.toString();
+
+		
+		bubbleQuality = new Quality(rand.nextInt(4));
+		
+		bubbleSize = rand.nextInt(100);
+		
+	}
+	
+	public String getName() {
+		
+		return bubbleName;
+		
+	}
+	
+	public void printName() {
+		
+		System.out.println(bubbleName);
+	}
+	
+	public static void main(String[] args) {
+		
+		Bubble bubble = new Bubble();
+		
+		bubble.printName();
+
+		bubble.printQuality();
+		
+		System.out.println(bubble.getSize());
+			
+		
+	}
+	
+	public int getSize() {
+		return bubbleSize;
+	}
+	
+	public Quality getQuality() {
+		return bubbleQuality;
+	}
+	public int getQualityValue() {
+		return bubbleQuality.getQuality();
+	}
+	public void printQuality() {
+		bubbleQuality.printQuality();
+	}
+	
+}
+
+class Quality{
+	
+	int qualityValue;
+	
+	public Quality() {
+		qualityValue = 1;
+	}
+	
+	public Quality(int i) {
+		qualityValue = i;
+	}
+	
+	public int getQuality() {
+		return qualityValue;
+	}
+	
+	public void printQuality() {
+		
+		if(qualityValue <= 0) {
+			System.out.println("Dirt");
+		}
+		else if(qualityValue == 1) {
+			System.out.println("Bronze");
+		}
+		else if(qualityValue == 2) {
+			System.out.println("Silver");
+		}
+		else {
+			System.out.println("Gold");
+		}
+	}
+}
